@@ -2,12 +2,8 @@ const express = require('express')
 const app = express()
 const port = 3000
 const router_api = require('./api')
-const config = require('./config')
-const mysql = require('mysql')
-const con = mysql.createConnection(config)
 
 app.use('/api', router_api)
-app.use
 app.get('/', (req, res) => {
   res.send('Welcome to maintenance api')
 })
@@ -21,12 +17,7 @@ app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })
 
-con.connect(function(err){
-  if(err) throw err
-  console.log('Connected!')
-})
-
-//Test server api with middleware
+/*Test server api with middleware
 const compression = require('compression')
 app.use(compression(
   {
@@ -68,13 +59,13 @@ app.use((req, res, next) => {       //middleware for set value req.db by use /li
 app.use((req, res, next) => {             
   req.$socket = socket
   next()
-})
+})*/
 
 app.use('/api', require('./api'))   /*Call File from route API from api/index.js */
 
-app.listen(config.port, () => {
+/*app.listen(config.port, () => {
   console.log('ready', config.port)
-})
+})*/
 
 // setInterval(() => {
 //   let num = ('' + Math.floor(Math.random() * 1000000)).padStart(6, '0')
