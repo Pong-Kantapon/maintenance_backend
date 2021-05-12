@@ -1,4 +1,5 @@
 const sql = require('./db.connection.js')
+const $ = require('jquery')
 
 const Employee = function(employee) {
     this.position_name = employee.position_name
@@ -14,7 +15,7 @@ const Employee = function(employee) {
 }
 
 Employee.create = (employee, result) => {
-    console.log(newEmployese)
+    console.log(newEmployee)
     sql.query('INSERT INTO Employee SET ?', newEmployee, (err, result) => {
         if (err) {
             console.log('error : ', err)
@@ -25,8 +26,8 @@ Employee.create = (employee, result) => {
     })   
 }
 
-Employee.getEmploybyID = (staff_id, result) => {
-    sql.query('SELECT * FROM Employee WHERE staff_id = ?', [staff_id], (err,result) => {
+Employee.getEmployeebyID = (staff_id, result) => {
+    sql.query(`SELECT * FROM Employee WHERE staff_id = "${staff_id}"`, (err,result) => {
         if(err) {
             console.log(err)
             result(err, null)
@@ -38,8 +39,14 @@ Employee.getEmploybyID = (staff_id, result) => {
     })
 }
 
-
-
 Employee.update = (employee, result) => {
-    sql.query('UPDATE Employee SET ')
+    sql.query(`UPDATE Employee SET ? WHERE staff_id = "${employee.staff_id}"`, employee, (err,result) => {
+        if(err) {
+            console.log(err)
+            result(err, null)
+        } else {
+            result(null, result)
+        }
+    })
 }
+module.exports = Employee
