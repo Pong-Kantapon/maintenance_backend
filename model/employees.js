@@ -25,6 +25,21 @@ Employee.create = (employee, result) => {
     })   
 }
 
+Employee.getEmploybyID = (staff_id, result) => {
+    sql.query('SELECT * FROM Employee WHERE staff_id = ?', [staff_id], (err,result) => {
+        if(err) {
+            console.log(err)
+            result(err, null)
+            return
+        } else {
+            result(null, result[0])
+            return
+        }
+    })
+}
+
+
+
 Employee.update = (employee, result) => {
     sql.query('UPDATE Employee SET ')
 }
