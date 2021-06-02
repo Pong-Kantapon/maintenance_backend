@@ -6,44 +6,47 @@ const Customer = function(customer) {
     this.first_name = customer.first_name
     this.last_name = customer.last_name
     this.phone_number = customer.phone_number
-    this.credit_card = customer.credit_card
 }
 
 Customer.create = (customer, result) => {
     console.log(customer)
-    sql.query('INSERT INTO Customer SET ?', customer, (err, result) => {
+    sql.query(`INSERT INTO Customer SET "${customer}"`, (err, res) => {
         if (err) {
             console.log('error : ', err)
             result(err, null)
             return
         }
-    result(null, {...customer})
+        else{
+            result(null, {...customer})
+            return
+        }
     })   
 }
 
 Customer.getCustomerbyID = (customer_id, result) => {
-    sql.query(`SELECT * FROM Customer WHERE customer_id = "${customer_id}"`, (err,result) => {
+    sql.query(`SELECT * FROM Customer WHERE customer_id = "${customer_id}"`, (err,res) => {
         if(err) {
             console.log(err)
             result(err, null)
             return
         } else {
-            result(null, result[0])
+            result(null, res)
             return
         }
     })
 }
 
-Customer.update = (customer, result) => {
-    sql.query(`UPDATE Customer SET ? WHERE customer_id = "${customer.customer_id}"`, customer, (err,result) => {
+Customer.editCustomer = (customer, result) => {
+    sql.query(`UPDATE Customer SET ? WHERE customer_id = "${customer.customer_id}"`,customer, (err,res) => {
         if(err) {
             console.log(err)
             result(err, null)
             return
         }else {
-            result(null, result)
+            result(null, res)
             return
         }
     })
 }
+
 module.exports = Customer

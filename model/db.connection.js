@@ -1,4 +1,4 @@
-const mysqli = require('mysql')
+const mysql = require('mysql')
 const dbconfig = require('../config/database.js')
 const fs = require('fs')
 
@@ -13,6 +13,6 @@ const con = mysql.createConnection({
 
 con.connect(function(err){
     if(err) throw err
-    console.log('Connected! to the' + dbconfig.database + 'database.')
+    console.log('Connected! to the ' + dbconfig.database + ' database.')
   })
 module.exports = con
