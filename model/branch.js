@@ -9,14 +9,14 @@ const Branch = function(branch) {
 Branch.create = (newBranch, result) =>{
     sql.query(`INSERT INTO tb_branch SET ?`, newBranch, (err, res) =>{
         if (err) {
-            console.log("error : ",err);
-            result(err,null);
-            return;
+            console.log("error : ", err)
+            result(err, null)
+            return
         }
         else{
-            console.log("Created branch : ", newBranch);  
-            result(null, {...newBranch});
-            return;
+            console.log("Created branch : ", newBranch)
+            result(null, {...newBranch})
+            return
         }
     })
 }
@@ -62,5 +62,5 @@ Branch.editBranch = (branch, result) => {
     })
 }
 
-module.exports = Branch;
+module.exports = Branch
 

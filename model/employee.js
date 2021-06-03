@@ -1,8 +1,6 @@
 const sql = require('./db.connection.js')
-const $ = require('jquery')
 
 const Employee = function(employee) {
-    this.staff_id = employee.staff_id
     this.position_id = employee.position_id
     this.branch_id = employee.branch_id
     this.id_card = employee.id_card
@@ -16,21 +14,23 @@ const Employee = function(employee) {
 
 Employee.create = (employee, result) => {
     console.log(employee)
-    sql.query(`INSERT INTO Employee SET "${employee}"`, (err,res) => {
+    sql.query(`INSERT INTO tb_employee SET ?`, employee, (err, res) => {
         if (err) {
             console.log('error : ', err)
             result(err, null)
             return
         }
         else{
+            console.log("Created employee : ", employee)
             result(null, {...employee})
             return
         }
     })   
 }
 
+
 Employee.getEmployeebyID = (staff_id, result) => {
-    sql.query(`SELECT * FROM Employee WHERE staff_id = "${staff_id}"`, (err,res) => {
+    sql.query(`SELECT * FROM tb_employee WHERE staff_id = "${staff_id}"`, (err,res) => {
         if(err) {
             console.log(err)
             result(err, null)
@@ -43,7 +43,7 @@ Employee.getEmployeebyID = (staff_id, result) => {
 }
 
 Employee.update = (employee, result) => {
-    sql.query(`UPDATE Employee SET ? WHERE staff_id = "${employee.staff_id}"`, employee, (err,res) => {
+    sql.query(`UPDATE tb_employee SET ? WHERE staff_id = "${employee.staff_id}"`, employee, (err,res) => {
         if(err) {
             console.log(err)
             result(err, null)

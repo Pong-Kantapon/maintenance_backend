@@ -5,36 +5,36 @@ CREATE TABLE IF NOT EXISTS tb_branch(
     branch_id       int             NOT NULL AUTO_INCREMENT,
     branch_name     varchar(64)     NOT NULL,
     branch_phone    varchar(64)     NOT NULL,
-    branch_address  varchar(64)     NOT NULL,
+    branch_address  varchar(256)     NOT NULL,
     PRIMARY KEY (branch_id),
     UNIQUE      (branch_id)
-)
+);
 
-/* Amount Customer Table */
+/* Amount Customer Table */ 
 CREATE TABLE IF NOT EXISTS tb_customers(
     customer_id     int             NOT NULL AUTO_INCREMENT,
-    first_name      varchar(32)     NOT NULL,
-    last_name       varchar(32)     NOT NULL,
+    first_name      varchar(64)     NOT NULL,
+    last_name       varchar(64)     NOT NULL,
     phone_number    varchar(32)     NOT NULL,
     PRIMARY KEY (customer_id),
     UNIQUE      (customer_id)
-)
+);
 
 /* Amount Employee Table */
 CREATE TABLE IF NOT EXISTS tb_employee(
     staff_id         int            NOT NULL AUTO_INCREMENT,
-    position_id      int            NOT NULL,
+    position_id      varchar(32)    NOT NULL,
     branch_id        int            NOT NULL,
-    id_card          int            NOT NULL,
+    id_card          float          NOT NULL,
     first_name       varchar(64)    NOT NULL,
     last_name        varchar(64)    NOT NULL,
     gender           varchar(64)    NOT NULL,
-    address          varchar(64)    NOT NULL,
+    address          varchar(256)   NOT NULL,
     phone            varchar(64)    NOT NULL,
     email            varchar(64)    NOT NULL,
     PRIMARY KEY (staff_id),
     UNIQUE      (staff_id, email, id_card)
-)
+);
 
 /* Amount Error database Table */
 CREATE TABLE IF NOT EXISTS tb_errordatabase (
@@ -43,25 +43,25 @@ CREATE TABLE IF NOT EXISTS tb_errordatabase (
     maintenance_id      int             NOT NULL, 
     PRIMARY KEY (error_id),
     UNIQUE      (error_id)
-)
+);
 
 /* Amount Machine Table */
 CREATE TABLE IF NOT EXISTS tb_machine(
     machine_id      int                 NOT NULL AUTO_INCREMENT,
-    set_id          int                 NOT NULL,
+    customer_id     int                 NOT NULL,                         
     type_machine    varchar(64)         NOT NULL,
     PRIMARY KEY (machine_id),
     UNIQUE      (machine_id)
-)
+);
 
-/* Amount Machine Set Table */
+/* Amount Machine Set Table 
 CREATE TABLE IF NOT EXISTS tb_machine_set(
     set_id               int     NOT NULL AUTO_INCREMENT,
     customer_id          int     NOT NULL,
     machine_amount       int     NOT NULL,
     PRIMARY KEY (set_id),
     UNIQUE      (set_id)
-)
+);*/
 
 /* Amount Maintenance Log Table */
 CREATE TABLE IF NOT EXISTS tb_maintenance_log(
@@ -72,17 +72,17 @@ CREATE TABLE IF NOT EXISTS tb_maintenance_log(
     staff_id                     int             NOT NULL,
     PRIMARY KEY (maintenance_id),
     UNIQUE      (maintenance_id)
-)
+);
 
 /* Amount Part Request Table */
 CREATE TABLE IF NOT EXISTS tb_part_rq(
-    partrq_id        int             NOT NULL AUTO_INCREMENT,
+    partrq_id       int             NOT NULL AUTO_INCREMENT,
     part_id         int             NOT NULL,
     staff_id        int             NOT NULL,
     part_reason     varchar(364)    NOT NULL,
     PRIMARY KEY (partrq_id),
     UNIQUE      (partrq_id) 
-)
+);
 
 /* Amount Part Info Table */
 CREATE TABLE IF NOT EXISTS tb_part_info(
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS tb_part_info(
     machine_id      int             NOT NULL,
     PRIMARY KEY (part_id),
     UNIQUE      (part_id)
-)
+);
 
 /* Amount Receipt Table */
 CREATE TABLE IF NOT EXISTS tb_receipt(
@@ -103,16 +103,16 @@ CREATE TABLE IF NOT EXISTS tb_receipt(
     receipt_date        DATE        NOT NULL,
     PRIMARY KEY   (receipt_id),
     UNIQUE        (receipt_id)
-)
+);
 
 /* Amount Position Table */
 CREATE TABLE IF NOT EXISTS tb_position(
-    position_id          int           NOT NULL,
+    position_id          varchar(32)   NOT NULL,
     position_name        varchar(32)   NOT NULL,
     salary               float         NOT NULL,
     PRIMARY KEY (position_id),
     UNIQUE (position_id)
-)
+);
 
 /* Amount Request Table */
 CREATE TABLE IF NOT EXISTS tb_request(
@@ -123,16 +123,7 @@ CREATE TABLE IF NOT EXISTS tb_request(
     plan                 varchar(69)       NOT NULL,
     PRIMARY KEY (service_id),
     UNIQUE      (service_id)
-)
-
-/* Amount Users Table 
-CREATE TABLE IF NOT EXISTS tb_users(
-    user_id             varchar(128)   NOT NULL,
-    username            varchar(128)   NOT NULL,
-    password            varchar(128)   NOT NULL,
-    PRIMARY KEY (user_id),
-    UNIQUE      (user_id)
-)*/
+);
 
 /* Amount Payment Infomation Table */
 CREATE TABLE IF NOT EXISTS tb_payment_infomation(
@@ -143,7 +134,7 @@ CREATE TABLE IF NOT EXISTS tb_payment_infomation(
 	credit_card_exp		DATE		NOT NULL,
 	PRIMARY KEY (p_info_id),
 	UNIQUE      (p_info_id, credit_card_number)
-)
+);
 
 /* Amount Emergency Table */
 CREATE TABLE IF NOT EXISTS tb_emergency(
@@ -154,11 +145,11 @@ CREATE TABLE IF NOT EXISTS tb_emergency(
     e_date          DATE            NOT NULL,
     PRIMARY KEY (emergency_id),
     UNIQUE      (emergency_id)
-) 
+);
 
 /* Amount feedback Table */
 CREATE TABLE IF NOT EXISTS tb_feedback(
-	fb_id               int             NOT NULL,
+	fb_id               int             NOT NULL AUTO_INCREMENT,
     service_id          int             NOT NULL,
     r_score             int             NOT NULL,
     s_score             int             NOT NULL,
@@ -166,4 +157,4 @@ CREATE TABLE IF NOT EXISTS tb_feedback(
     comment             varchar(364)    NULL,
 	PRIMARY KEY (fb_id),
 	UNIQUE      (fb_id)
-)
+);

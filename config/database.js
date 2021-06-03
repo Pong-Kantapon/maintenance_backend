@@ -4,5 +4,6 @@ module.exports = {
     password: '62070503431', 
     port: 3431,
     database: 'maintenance_app',
-    dialect: 'mysql' 
+    dialect: 'mysql',
+    multipleStatements: true
 }

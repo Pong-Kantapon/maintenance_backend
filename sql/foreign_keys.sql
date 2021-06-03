@@ -11,12 +11,12 @@ ALTER TABLE tb_errordatabase
         ON UPDATE CASCADE ON DELETE CASCADE;
     
 ALTER TABLE tb_machine
-    ADD FOREIGN KEY (set_id)            REFERENCES tb_machine_set(set_id)
+    ADD FOREIGN KEY (customer_id)            REFERENCES tb_customers(customer_id)
         ON UPDATE CASCADE ON DELETE CASCADE;
-    
+ /*   
 ALTER TABLE tb_machine_set    
     ADD FOREIGN KEY (customer_id)       REFERENCES tb_customers(customer_id)
-        ON UPDATE CASCADE ON DELETE CASCADE;
+        ON UPDATE CASCADE ON DELETE CASCADE;*/
 
 ALTER TABLE tb_maintenance_log
     ADD FOREIGN KEY (machine_id)        REFERENCES tb_machine(machine_id)
