@@ -10,3 +10,16 @@ exports.create =(req, res) => {
         }
     })
 }
+
+exports.getAvgScore =(req, res) => {
+    Feedback.getAvgScore((err,results) => {
+        if(err){
+            res.send(err)
+        }
+        else {
+            res.json(results)
+        }
+    })
+
+
+}

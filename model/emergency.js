@@ -48,4 +48,21 @@ Emergency.update = (emergency, result) => {
         }
     })
 }
+
+Emergency.getHighRepair = (result) => {
+    sql.query(`SELECT e.machine_id, m.type_machine, count(e.machine_id) as num_of_repair FROM tb_machine m, tb_emergency e WHERE e.machine_id = m.machine_id GROUP BY e.machine_id ORDER BY num_of_repair DESC LIMIT 1`, (err, res) => {
+    if(err) {
+        console.log(err)
+        result(err, null)
+        return
+    } else {
+        result(null, res[0])
+        return
+    }
+
+})
+
+}
+
+
 module.exports = Emergency

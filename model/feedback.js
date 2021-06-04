@@ -49,4 +49,21 @@ Feedback.update = (feedback, result) => {
         }
     })
 }
+
+Feedback.getAvgScore = (result) => {
+    sql.query(`SELECT AVG(all_score) as Overallscore FROM tb_feedback`, (err, res) => {
+    if(err) {
+        console.log(err)
+        result(err, null)
+        return
+    } else {
+        result(null, res[0])
+        return
+    }
+
+})
+
+}
+
+
 module.exports = Feedback

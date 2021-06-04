@@ -23,4 +23,34 @@ Request.create = (request, result) => {
     })   
 }
 
+Request.getRequestbyID = (service_id, result) => {
+    sql.query(`SELECT * FROM tb_request WHERE service_id = "${service_id}"`, (err,res) => {
+        if(err) {
+            console.log(err)
+            result(err, null)
+            return
+        }
+        else {
+            result(null, res[0])
+            return
+        }
+    })
+}
+
+Request.getHighRequest = (result) => {
+    sql.query(`SELECT c.* , count(r.customer_id) as num_of_request FROM tb_request r, tb_customers c WHERE r.customer_id = c.customer_id GROUP BY r.customer_id ORDER BY num_of_request DESC LIMIT 1`, (err, res) => {
+    if(err) {
+        console.log(err)
+        result(err, null)
+        return
+    } else {
+        result(null, res[0])
+        return
+    }
+
+})
+
+}
+
+
 module.exports = Request

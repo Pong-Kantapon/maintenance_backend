@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS tb_employee(
     staff_id         int            NOT NULL AUTO_INCREMENT,
     position_id      varchar(32)    NOT NULL,
     branch_id        int            NOT NULL,
-    id_card          float          NOT NULL,
+    id_card          bigint         NOT NULL,
     first_name       varchar(64)    NOT NULL,
     last_name        varchar(64)    NOT NULL,
     gender           varchar(64)    NOT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS tb_part_info(
 /* Amount Receipt Table */
 CREATE TABLE IF NOT EXISTS tb_receipt(
     receipt_id          int         NOT NULL AUTO_INCREMENT,
-    receipt_number      int         NOT NULL,
+    receipt_number      bigint      NOT NULL,
     service_id          int         NOT NULL,
     receipt_date        DATE        NOT NULL,
     PRIMARY KEY   (receipt_id),
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS tb_receipt(
 CREATE TABLE IF NOT EXISTS tb_position(
     position_id          varchar(32)   NOT NULL,
     position_name        varchar(32)   NOT NULL,
-    salary               float         NOT NULL,
+    salary               int         NOT NULL,
     PRIMARY KEY (position_id),
     UNIQUE (position_id)
 );
@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS tb_request(
 CREATE TABLE IF NOT EXISTS tb_payment_infomation(
 	p_info_id			INT 		NOT NULL AUTO_INCREMENT,
     customer_id	        INT         NOT NULL,
-	credit_card_number	FLOAT 		NOT NULL,
+	credit_card_number	BIGINT 		NOT NULL,
 	credit_card_type	VARCHAR(32) NOT NULL,
 	credit_card_exp		DATE		NOT NULL,
 	PRIMARY KEY (p_info_id),

@@ -19,8 +19,8 @@ con.connect(function(err){
     /*var tables = fs.readFileSync('./sql/tables.sql').toString()
     con.query(tables)
     var foreignKeys = fs.readFileSync('./sql/foreign_keys.sql').toString()
-    con.query(foreignKeys)*/
-    /*var position = fs.readFileSync('./sql/position.sql').toString()
+    con.query(foreignKeys)
+    var position = fs.readFileSync('./sql/position.sql').toString()
     con.query(position)*/
   })
 

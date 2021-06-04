@@ -58,7 +58,7 @@ Customer.getCount = (result) => {
   
       if (res) {
         result(null, res[0].count);
-        return;
+        return; 
       }
     });
   };

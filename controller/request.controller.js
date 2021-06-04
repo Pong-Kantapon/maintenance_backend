@@ -26,6 +26,53 @@ exports.create = (req, res) => {
          }
         }
     })
-
-
   }
+
+  exports.getMachinebyID = (req, res) =>{
+    Machine.getMachinebyID(req.params.machine_id, (err, results) =>{
+        if(err){
+            res.send(err)
+        }
+        else{
+            res.json(results)
+        }
+    })
+}
+
+exports.getRequestbyID = (req, res) =>{
+    Request.getRequestbyID(req.params.service_id, (err, results) =>{
+        if(err){
+            res.send(err)
+        }
+        else{
+            res.json(results)
+        }
+    })
+}
+
+exports.getHighRequest = (req, res) => {
+    Request.getHighRequest((err,results) => {
+        if(err){
+            res.send(err)
+        }
+        else {
+            res.json(results)
+        }
+    })
+
+
+}
+
+exports.getHighType = (req, res) => {
+    Machine.getHighType((err,results) => {
+        if(err){
+            res.send(err)
+        }
+        else {
+            res.json(results)
+        }
+    })
+
+
+}
+

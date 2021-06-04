@@ -48,8 +48,8 @@ Branch.getBranchbyID = (branch_id, result) => {
     })
 }
 
-Branch.editBranch = (branch, result) => {
-    sql.query(`UPDATE tb_branch SET ? WHERE branch_id = "${branch.branch_id}"`, branch, (err,res) => {
+Branch.editBranch = (branch, branch_id, result) => {
+    sql.query(`UPDATE tb_branch SET ? WHERE branch_id = "${branch_id}"`, branch, (err,res) => {
         if(err) {
             console.log(err)
             result(err, null)

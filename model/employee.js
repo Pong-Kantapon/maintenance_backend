@@ -21,7 +21,6 @@ Employee.create = (employee, result) => {
             return
         }
         else{
-            console.log("Created employee : ", employee)
             result(null, {...employee})
             return
         }
@@ -36,14 +35,14 @@ Employee.getEmployeebyID = (staff_id, result) => {
             result(err, null)
             return
         } else {
-            result(null, res)
+            result(null, res[0])
             return
         }
     })
 }
 
-Employee.update = (employee, result) => {
-    sql.query(`UPDATE tb_employee SET ? WHERE staff_id = "${employee.staff_id}"`, employee, (err,res) => {
+Employee.editEmployee = (employee, staff_id, result) => {
+    sql.query(`UPDATE tb_employee SET ? WHERE staff_id = "${staff_id}"`, employee, (err,res) => {
         if(err) {
             console.log(err)
             result(err, null)
@@ -53,5 +52,20 @@ Employee.update = (employee, result) => {
             return
         }
     })
+}
+
+Employee.getHighEm= (result) => {
+    sql.query(`SELECT e.* , count(m.staff_id) as num_of_maintenance FROM tb_maintenance_log m, tb_employee e WHERE e.staff_id = m.staff_id GROUP BY m.staff_id ORDER BY num_of_maintenance DESC LIMIT 1`, (err, res) => {
+    if(err) {
+        console.log(err)
+        result(err, null)
+        return
+    } else {
+        result(null, res[0])
+        return
+    }
+
+})
+
 }
 module.exports = Employee

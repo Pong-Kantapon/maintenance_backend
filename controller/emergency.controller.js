@@ -10,3 +10,16 @@ exports.create =(req, res) => {
         }
     })
 }
+
+exports.getHighRepair = (req, res) => {
+    Emergency.getHighRepair((err,results) => {
+        if(err){
+            res.send(err)
+        }
+        else {
+            res.json(results)
+        }
+    })
+
+
+}
